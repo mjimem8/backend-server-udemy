@@ -6,6 +6,10 @@ var SEED = require('../config/config').SEED;
 //simplemente para verificar el token tendremos que pasar por parametro 
 //a la petición el metodo que ponemos aquí
 
+//en las demas peticiones el token se asa por parametro/request y el sistema 
+//automaticamente en las peticiones que recibe el token podemos obtener los datos
+//del usuario a traves del token de tal forma -> request.usuario._id
+
 exports.verificaToken = function(request, response, next) {
     var token = request.query.token;
 

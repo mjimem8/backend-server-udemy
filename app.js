@@ -15,6 +15,11 @@ app.use(bodyParser.json());
 var appRoutes = require('./routes/app');
 var usuarioRoute = require('./routes/usuario');
 var loginRoute = require('./routes/login');
+var hospitalRoute = require('./routes/hospital');
+var medicoRoute = require('./routes/medico');
+var busquedaRoute = require('./routes/busqueda');
+var uploadRoute = require('./routes/upload');
+var imagenesRoute = require('./routes/imagenes');
 
 //conexion a la base de datos
 mongoose.connection.openUri('mongodb://localhost:27017/hospitalDB', { useUnifiedTopology: true, useNewUrlParser: true },
@@ -24,11 +29,25 @@ mongoose.connection.openUri('mongodb://localhost:27017/hospitalDB', { useUnified
 
     });
 
+//Server index config
+//con lo siguiente podemos montar la estructura de carpetas de uploads de manera grafica 
+//no lo utilizaremos
+
+//var serverIndex = require('serve-index');
+//app.use(express.static(__dirname + '/'));
+//app.use('/uploads', serveIndex(__dirname + '/uploads'));
+
 mongoose.set('useCreateIndex', true);
 
 //Rutas
 app.use('/usuario', usuarioRoute);
+app.use('/hospital', hospitalRoute);
+app.use('/medico', medicoRoute);
 app.use('/login', loginRoute);
+app.use('/busqueda', busquedaRoute);
+app.use('/upload', uploadRoute);
+app.use('/img', imagenesRoute);
+
 app.use('/', appRoutes);
 
 //escuchar peticiones
